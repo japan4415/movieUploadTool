@@ -1,11 +1,15 @@
 import ffmpeg
 import subprocess
+import os
 from pydub import AudioSegment
 
 def mainRoute():
     makeAudioFromVideo('./target/target.mp4')
     addSilenceAudio('./soundOnly.mp4',3*60)
     mergeVideoAudio('./movieOnly.mp4','./addSilenceAudio.mp4')
+    os.remove("./soundOnly.mp4")
+    os.remove("./movieOnly.mp4")
+    os.remove("./addSilenceAudio.mp4")
 
 def makeAudioFromVideo(filePath):
     cmd = ['ffmpeg','-i',filePath,'-vcodec','copy','-map','0:0','movieOnly.mp4']
@@ -22,6 +26,9 @@ def addSilenceAudio(filePath,second):
 def mergeVideoAudio(videoFilePath,audioFilePath):
     cmd = ['ffmpeg','-i',videoFilePath,'-vcodec','copy','-i',audioFilePath,'-acodec','copy','result/finalResult.mp4']
     subprocess.run(cmd)
+
+def uploadToYoutube(filePath):
+    pass
 
 if __name__ == '__main__':
     mainRoute()
