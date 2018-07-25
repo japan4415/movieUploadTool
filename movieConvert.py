@@ -21,6 +21,7 @@ def addSilenceAudio(filePath,second):
     silence = AudioSegment.silent(duration=second*1000)
     data = AudioSegment.from_file(filePath,'mp4')
     result = silence + data
+    result = result + 10
     result.export('addSilenceAudio.mp4',format='mp4')
 
 def mergeVideoAudio(videoFilePath,audioFilePath):
