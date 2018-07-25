@@ -24,7 +24,7 @@ def addSilenceAudio(filePath,second):
     result.export('addSilenceAudio.mp4',format='mp4')
 
 def mergeVideoAudio(videoFilePath,audioFilePath):
-    cmd = ['ffmpeg','-i',videoFilePath,'-vcodec','copy','-i',audioFilePath,'-acodec','copy','result/finalResult.mp4']
+    cmd = ['ffmpeg','-i',videoFilePath,'-i',audioFilePath,'-vcodec','copy','-acodec','copy','result/finalResult.mp4']
     subprocess.run(cmd)
 
 def uploadToYoutube(filePath):
